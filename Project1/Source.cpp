@@ -20,7 +20,7 @@ public:
 class Worker
 {
 public:
-	unsigned int WorkerID;
+	int WorkerID;
 	std::string WorkerNum;
 	std::string WorkerName;
 
@@ -99,15 +99,15 @@ public:
 class DataManagement
 {
 public:
-	unsigned int id;
+	int id;
 	std::string name;
-	unsigned int Did;
+	int Did;
 
 	std::vector<DataManagement> WorkerVector;
 
 	int TargetId;
 
-	bool IsEmployeeIdDuplicate(const std::vector<DataManagement>& workers, unsigned int id)
+	bool IsEmployeeIdDuplicate(const std::vector<DataManagement>& workers, int id)
 	{
 		for (const DataManagement& worker : workers)
 		{
@@ -306,9 +306,9 @@ public:
 
 	void ChangeWorker()
 	{
-		unsigned int InputSelect;
+		int InputSelect;
 		std::string NewName;
-		unsigned int NewDid;
+		int NewDid;
 
 		std::cout << "輸入要修改的員工編號: \n";
 		std::cin >> TargetId;
