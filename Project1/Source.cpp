@@ -1,4 +1,4 @@
-﻿#include "Pch.h"
+#include "Pch.h"
 #define FILE "data.txt"
 
 class Manger
@@ -21,8 +21,12 @@ class Worker
 {
 public:
 	int WorkerID;
-	std::string WorkerNum;
+	int WorkerNum;
 	std::string WorkerName;
+
+	Worker(int ID, std::string Name, int Num) {}
+
+	Worker() = default;
 
 	virtual void ShowInfo() = 0;
 
@@ -33,12 +37,8 @@ class Employee : public Worker
 {
 public:
 
-	Employee(int ID, std::string Name, unsigned int Num)
-	{
-		this->WorkerID;
-		this->WorkerName;
-		this->WorkerNum;
-	}
+	Employee(int ID, std::string Name, int Num)
+		:Worker(ID, Name, Num) {}
 
 	virtual void ShowInfo()
 	{
@@ -56,11 +56,8 @@ class Manager : public Worker
 {
 public:
 	Manager(int ID, std::string Name, int Num)
-	{
-		this->WorkerID;
-		this->WorkerName;
-		this->WorkerNum;
-	}
+		:Worker(ID, Name, Num) {}
+
 	virtual void ShowInfo()
 	{
 		std::cout << "員工編號: " << this->WorkerID << "\t";
@@ -78,11 +75,8 @@ class Boss : public Worker
 {
 public:
 	Boss(int ID, std::string Name, int Num)
-	{
-		this->WorkerID;
-		this->WorkerName;
-		this->WorkerNum;
-	}
+		:Worker(ID, Name, Num) {}
+
 	virtual void ShowInfo()
 	{
 		std::cout << "員工編號: " << this->WorkerID << "\t";
@@ -455,8 +449,7 @@ void ShowMenu()
 	std::cout << "3. 刪除成員" << std::endl;
 	std::cout << "4. 修改成員" << std::endl;
 	std::cout << "5. 搜尋成員" << std::endl;
-	std::cout << "6. 按照編號順序" << std::endl;
-	std::cout << "7. 清空所有資料" << std::endl;
+	std::cout << "6. 清空所有資料" << std::endl;
 }
 
 void Fun_Final()
