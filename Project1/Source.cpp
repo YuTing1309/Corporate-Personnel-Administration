@@ -1,6 +1,37 @@
 #include "Pch.h"
 #define FILE "data.txt"
 
+struct LoginUser
+{
+	std::string _username;
+	std::string _password;
+};
+class LoginSystem
+{
+public:
+	
+	LoginSystem()
+	{
+		users.emplace_back("user01", "12345");
+		users.emplace_back("user02", "00000");
+	}
+	~LoginSystem() {}
+	
+	bool LoginSys(const std::string_view username, const std::string_view password)
+	{
+		for (const auto& user : users)
+		{
+			if (user._username == username and user._password == password)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+private:
+	std::vector<LoginUser> users;
+};
+
 class Manger
 {
 public:
@@ -116,7 +147,7 @@ public:
 	void AddEmployeeData(std::vector<DataManagement>& workers)
 	{
 		DataManagement worker(id, name, Did);
-		workers.push_back(worker);
+		workers.emplace_back(worker);
 	}
 
 	void AddEmployee()
@@ -464,11 +495,36 @@ int main()
 
 	DataManagement DM;
 
-	//File F;
+	LoginSystem login;
 
-	DM.WorkerVector.push_back(DataManagement(1, "olivia", 3));
+	std::string username, password;
+	bool success = false;
+	while (!success) 
+	{
+		std::cout << "請輸入帳號: ";
+		std::cin >> username;
 
-	//std::sort(DM.WorkerVector.begin(), DM.WorkerVector.end());
+		std::cout << "請輸入密碼: ";
+		std::cin >> password;
+		if (login.LoginSys(username, password))
+		{
+			std::cin.get();
+			std::cout << "登入成功" << std::endl;
+			std::cin.get();
+			success = true;
+		}
+		else 
+		{
+			std::cin.get();
+			std::cout << "登入失敗" << std::endl;
+			std::cin.get();
+			system("cls");
+		}
+	}
+
+	//File 
+
+	DM.WorkerVector.emplace_back(DataManagement(1, "olivia", 3));
 
 	int InputChoice = 0;
 
